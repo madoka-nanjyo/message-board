@@ -8,7 +8,7 @@ def index
 end
 
 def create
-    @message = Message.new(message_params)
+   @message = Message.new(message_params)
 if @message.save
     redirect_to root_path , notice: 'メッセージを保存しました'
 else
@@ -34,8 +34,11 @@ end
 end
 
 private
-
-  def set_message
-    @message = Message.find(params[:id])
-  end
+def message_params
+params.require(:message).permit(:name, :body, :age) 
 end
+def set_message
+@message = Message.find(params[:id])
+end
+end
+
